@@ -112,17 +112,8 @@ read -r -d '' data << EOM
 }
 EOM
 
-# NAGIOS NSCA REQUEST
-# #tag="worker=$hostname,pool=$poolname,user=$user,session=$session,public_ip=$public_ip,private_ip=$private_ip"
-# tag="{\"worker\":\"$hostname\",\"pool\":\"$poolname\",\"user\":\"$user\",\"session\":\"$session\",\"public_ip\":\"$public_ip\",\"private_ip\":\"$private_ip\",\"project\":\"$project\",\"slurm_job\":\"$slurmjob\"}"
-# #perfdata="cpu_load=$cpuload,processes=$num_proc,total_mem=$totalmemory,used_mem=$usedmemory,free_mem=$freememory,free_mem_percent=$freememorypercent,free_disk=$freediskspace,free_disk_percent=$freediskpercent,total_disk=$totaldiskspace,used_disk=$useddiskspace"
-# perfdata="{\"c_u\":\"$cpu_used\",\"l\":\"$load\",\"u_m\":\"$usedmemory\",\"t_m\":\"$totalmemory\",\"f_m\":\"$freememory\",\"t_d\":\"$totaldiskspace\",\"f_d\":\"$freediskspace\",\"u_d\":\"$useddiskspace\",\"t_l_d\":\"$totallustrediskspace\",\"f_l_d\":\"$freelustrediskspace\",\"u_l_d\":\"$usedlustrediskspace\",\"rps\":\"$rps\",\"wps\":\"$wps\"}"
-# echo $tag
-# echo $perfdata
-# PROCS="$tag | $perfdata"
-# CMD="gce\tworker\t0\t$PROCS"
-# /bin/echo -e "$CMD" | $checkDir/send_nsca.pl -H __WORKER_ID__-controller
-
 # REST API POST REQUEST
 echo
 echo $data
+
+curl -X POST -H "Content-Type: application/json" -d "$data" https://$PW_PLATFORM_HOST/api/v2/stats
