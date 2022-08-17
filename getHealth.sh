@@ -83,23 +83,17 @@ private_ip=$(hostname -I | awk '{print $1}')
 public_ip=$(curl -s ifconfig.me)
 
 user="$(whoami)"
-poolname="__POOLNAME__"
-session="__SESSION__"
-project="__PROJECT__"
-csp="__CSP__"
-
-project="$csp - $(echo $project | awk -F ' - ' '{print $3}')"
 
 read -r -d '' data << EOM
 {
     "hostname":"$hostname",
-    "poolname":"$poolname",
-    "csp":"$csp",
+    "poolname":"$PW_POOL_NAME",
+    "csp":"$PW_CSP",
     "user":"$user",
-    "session":"$session",
+    "session":"$PW_SESSION",
     "public_ip":"$public_ip",
     "private_ip":"$private_ip",
-    "project":"$project",
+    "project":"$PW_GROUP",
     "slurmjob":"$slurmjob",
     "num_proc":"$num_proc",
     "cpu_user":"$cpu_user",
