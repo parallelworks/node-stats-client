@@ -82,14 +82,14 @@ hostname=$(hostname)
 private_ip=$(hostname -I | awk '{print $1}')
 public_ip=$(curl -s ifconfig.me)
 
-user="$(whoami)"
+
 
 read -r -d '' data << EOM
 {
     "hostname":"$hostname",
     "poolname":"$PW_POOL_NAME",
     "csp":"$PW_CSP",
-    "user":"$user",
+    "user":"$PW_USER",
     "session":"$PW_SESSION",
     "public_ip":"$public_ip",
     "private_ip":"$private_ip",
