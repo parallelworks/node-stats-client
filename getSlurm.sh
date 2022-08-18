@@ -20,8 +20,8 @@ read -r -d '' data << EOM
 {
     "cluster":"$Cluster",
     "poolname":"$PW_POOL_NAME",
-    "session":"$PW_SESSION",
-    "user":"$UserName",
+    "session_num":"$PW_SESSION",
+    "username":"$UserName",
     "project":"$PW_GROUP",
     "job_name":"$JobName",
     "uid":"$UserID",
